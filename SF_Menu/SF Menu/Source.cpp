@@ -5,15 +5,31 @@ using namespace sf;
 int main()
 {
 	RenderWindow window(VideoMode(720, 480), "SFMLworks");
-	Image Cloud;
-	Cloud.loadFromFile("images/Cloud.png");
+	Image FirstCloud;
+	FirstCloud.loadFromFile("images/Cloud.png");
 
-	Texture CloudTexture;
-	CloudTexture.loadFromImage(Cloud);
+	Texture FCloudTexture;
+	FCloudTexture.loadFromImage(FirstCloud);
 
-	Sprite CloudSprite;
-	CloudSprite.setTexture(CloudTexture);
-	CloudSprite.setPosition(50, 20);
+	Sprite FCloudSprite;
+	FCloudSprite.setTexture(FCloudTexture);
+	FCloudSprite.setPosition(-65, 35);
+
+	Image SecondCloud;
+	SecondCloud.loadFromFile("images/SCloud.png");
+
+	Texture SCloudTexture;
+	SCloudTexture.loadFromImage(SecondCloud);
+
+	Sprite SCloudSprite;
+	SCloudSprite.setTexture(SCloudTexture);
+	SCloudSprite.setPosition(550, 200);
+
+	Font font;
+	font.loadFromFile("Winter Snow.ttf");
+	Text text("", font, 30);
+	//text.setColor(Color::White);
+	text.setStyle(Text::Bold);
 
 	while (window.isOpen())
 	{
@@ -25,7 +41,11 @@ int main()
 		}
 
 		window.clear(sf::Color::Cyan);
-		window.draw(CloudSprite);
+		text.setString("English Words");
+		text.setPosition(270, 150);
+		window.draw(text);
+		window.draw(FCloudSprite);
+		window.draw(SCloudSprite);
 		window.display();
 	}
 
