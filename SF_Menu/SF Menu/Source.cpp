@@ -30,6 +30,7 @@ int main()
 	Text text("", font, 30);
 	//text.setColor(Color::White);
 	text.setStyle(Text::Bold);
+	text.setPosition(255, 120);
 
 	while (window.isOpen())
 	{
@@ -42,7 +43,6 @@ int main()
 
 		window.clear(sf::Color::Cyan);
 		text.setString("English Words");
-		text.setPosition(270, 150);
 		window.draw(text);
 		window.draw(FCloudSprite);
 		window.draw(SCloudSprite);
