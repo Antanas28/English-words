@@ -1,6 +1,48 @@
 #include <SFML/Graphics.hpp>
+#include<iostream>
+#include<fstream>
+#include<vector>
+#include<functional>
 
 using namespace sf;
+
+class Button {
+public:
+	Vector2f bPosition;
+	IntRect bSprite;
+	Sprite sprite;
+	std::function<void()> onClick;
+	std::function<void()> onRelease;
+	bool hasOnClick = false;
+	bool hasOnRelease = false;
+
+
+	Button(Texture& texture, Vector2f bPosition, IntRect bSprite) {
+		sprite.setTexture(texture);
+		this->bPosition = bPosition;
+		this->bSprite = bSprite;
+		sprite.setTextureRect(bSprite);
+		sprite.setPosition(bPosition);
+	}
+
+};
+
+std::vector<Button> gui;
+Texture guiTexture;
+
+void SetUpGUI() {
+	guiTexture.loadFromFile("images/gui.png");
+
+	Button temp(guiTexture, Vector2f(200, 200), IntRect(0, 0, 150, 75));
+	temp.onClick = []() { std::cout << "Learn English!\n"; };
+	temp.hasOnClick = true;
+	temp.onRelease = []() { std::cout << "English Learn!\n"; };
+	temp.hasOnRelease = true;
+	gui.push_back(temp);
+
+	//temp = Button(guiTexture, Vector2f(450, 200), IntRect(0, 50, 200, 50));
+	//gui.push_back(temp);
+}
 
 int main()
 {
@@ -32,6 +74,8 @@ int main()
 	text.setStyle(Text::Bold);
 	text.setPosition(255, 120);
 
+	SetUpGUI();
+
 	while (window.isOpen())
 	{
 		Event event;
@@ -39,6 +83,40 @@ int main()
 		{
 			if (event.type == Event::Closed)
 				window.close();
+			else if (event.type == Event::MouseButtonPressed) {
+				if (event.mouseButton.button == Mouse::Left) {
+					for (int i = 0; i < gui.size(); i++) {
+						if (gui.at(i).hasOnClick) {
+							if (gui.at(i).hasOnClick) {
+								if (Mouse::getPosition(window).x > gui.at(i).bPosition.x &&
+									Mouse::getPosition(window).x < gui.at(i).bPosition.x + gui.at(i).bSprite.width &&
+									Mouse::getPosition(window).y > gui.at(i).bPosition.y &&
+									Mouse::getPosition(window).y < gui.at(i).bPosition.y + gui.at(i).bSprite.width ) {
+									gui.at(i).onClick();
+								}
+							}
+
+						}
+					}
+				}
+			}
+			else if (event.type == Event::MouseButtonPressed) {
+				if (event.mouseButton.button == Mouse::Left) {
+					for (int i = 0; i < gui.size(); i++) {
+						if (gui.at(i).hasOnClick) {
+							if (gui.at(i).hasOnClick) {
+								if (Mouse::getPosition(window).x > gui.at(i).bPosition.x &&
+									Mouse::getPosition(window).x < gui.at(i).bPosition.x + gui.at(i).bSprite.width &&
+									Mouse::getPosition(window).y > gui.at(i).bPosition.y &&
+									Mouse::getPosition(window).y < gui.at(i).bPosition.y + gui.at(i).bSprite.width) {
+									gui.at(i).onClick();
+								}
+							}
+
+						}
+					}
+				}
+			}
 		}
 
 		window.clear(sf::Color::Cyan);
@@ -46,6 +124,9 @@ int main()
 		window.draw(text);
 		window.draw(FCloudSprite);
 		window.draw(SCloudSprite);
+		for (int i = 0; i < gui.size(); i++) {
+			window.draw(gui.at(i).sprite);
+		}
 		window.display();
 	}
 
