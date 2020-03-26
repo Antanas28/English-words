@@ -40,8 +40,10 @@ void SetUpGUI() {
 	temp.hasOnRelease = true;
 	gui.push_back(temp);
 
-	//temp = Button(guiTexture, Vector2f(450, 200), IntRect(0, 50, 200, 50));
-	//gui.push_back(temp);
+	temp = Button(guiTexture, Vector2f(400, 200), IntRect(0, 75, 150, 75));
+	temp.onClick = []() { std::cout << "English\n"; };
+	temp.hasOnClick = true;
+	gui.push_back(temp);
 }
 
 int main()
@@ -91,23 +93,6 @@ int main()
 								if (Mouse::getPosition(window).x > gui.at(i).bPosition.x &&
 									Mouse::getPosition(window).x < gui.at(i).bPosition.x + gui.at(i).bSprite.width &&
 									Mouse::getPosition(window).y > gui.at(i).bPosition.y &&
-									Mouse::getPosition(window).y < gui.at(i).bPosition.y + gui.at(i).bSprite.width ) {
-									gui.at(i).onClick();
-								}
-							}
-
-						}
-					}
-				}
-			}
-			else if (event.type == Event::MouseButtonPressed) {
-				if (event.mouseButton.button == Mouse::Left) {
-					for (int i = 0; i < gui.size(); i++) {
-						if (gui.at(i).hasOnClick) {
-							if (gui.at(i).hasOnClick) {
-								if (Mouse::getPosition(window).x > gui.at(i).bPosition.x &&
-									Mouse::getPosition(window).x < gui.at(i).bPosition.x + gui.at(i).bSprite.width &&
-									Mouse::getPosition(window).y > gui.at(i).bPosition.y &&
 									Mouse::getPosition(window).y < gui.at(i).bPosition.y + gui.at(i).bSprite.width) {
 									gui.at(i).onClick();
 								}
@@ -117,9 +102,27 @@ int main()
 					}
 				}
 			}
+			else if (event.type == Event::MouseButtonPressed) {
+				if (event.mouseButton.button == Mouse::Right) {
+					for (int i = 0; i < gui.size(); i++) {
+						if (gui.at(i).hasOnRelease) {
+							if (gui.at(i).hasOnRelease) {
+								if (Mouse::getPosition(window).x > gui.at(i).bPosition.x &&
+									Mouse::getPosition(window).x < gui.at(i).bPosition.x + gui.at(i).bSprite.width &&
+									Mouse::getPosition(window).y > gui.at(i).bPosition.y &&
+									Mouse::getPosition(window).y < gui.at(i).bPosition.y + gui.at(i).bSprite.width) {
+									gui.at(i).onRelease();
+								}
+							}
+
+						}
+					}
+				}
+			}
 		}
 
-		window.clear(sf::Color::Cyan);
+		window.setTitle("English Word");
+		window.clear(sf::Color(71,202,221));
 		text.setString("English Words");
 		window.draw(text);
 		window.draw(FCloudSprite);
