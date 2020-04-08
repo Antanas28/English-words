@@ -4,6 +4,7 @@
 #include<vector>
 #include<functional>
 #include "Menu.h"
+#include "EnglishWord.h"
 
 using namespace sf;
 
@@ -15,7 +16,6 @@ int main()
 	while (window.isOpen())
 	{
 		menu(window);
-
 	}
 
 	return 0;

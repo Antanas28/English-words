@@ -1,4 +1,10 @@
 #pragma once
+#include <SFML/Graphics.hpp>
+#include<iostream>
+#include<fstream>
+#include<vector>
+#include<functional>
+#include "EnglishWord.h"
 
 using namespace sf;
 
@@ -38,7 +44,6 @@ void menu(RenderWindow & window)
 	Font font;
 	font.loadFromFile("Winter Snow.ttf");
 	Text text("", font, 30);
-	//text.setColor(Color::White);
 	text.setStyle(Text::Bold);
 	text.setPosition(255, 120);
 
@@ -46,6 +51,7 @@ void menu(RenderWindow & window)
 	{
 		MenuNum = 0;
 		Event event;
+		menu1.setColor(Color::White);
 
 		if (IntRect(200, 200, 150, 75).contains(Mouse::getPosition(window))) { MenuNum = 1; }
 		if (IntRect(400, 200, 150, 75).contains(Mouse::getPosition(window))) { MenuNum = 2; }
@@ -62,7 +68,7 @@ void menu(RenderWindow & window)
 
 			if (event.type == Event::MouseButtonReleased) {
 				if (event.mouseButton.button == Mouse::Left)
-						if (MenuNum == 1) { std::cout << "1"; }
+					if (MenuNum == 1) { EnglishWord(window); }
 						if (MenuNum == 2) { std::cout << "2"; }
 						if (MenuNum == 3) { window.close(); isMenu = false; }
 			}
