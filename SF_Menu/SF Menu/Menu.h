@@ -4,7 +4,8 @@
 #include<fstream>
 #include<vector>
 #include<functional>
-#include "EnglishWord.h"
+#include "First.h"
+#include "Second.h"
 
 using namespace sf;
 
@@ -68,9 +69,9 @@ void menu(RenderWindow & window)
 
 			if (event.type == Event::MouseButtonReleased) {
 				if (event.mouseButton.button == Mouse::Left)
-					if (MenuNum == 1) { EnglishWord(window); }
-						if (MenuNum == 2) { std::cout << "2"; }
-						if (MenuNum == 3) { window.close(); isMenu = false; }
+					if (MenuNum == 1) { First(window); window.display(); while (!Keyboard::isKeyPressed(Keyboard::Escape)); }
+					if (MenuNum == 2) { Second(window); }
+					if (MenuNum == 3) { window.close(); isMenu = false; }
 			}
 		}
 		window.setTitle("English Word");

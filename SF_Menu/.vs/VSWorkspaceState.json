@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\SF Menu"
+    "\\SF Menu",
+    "\\SF Menu\\images",
+    "\\SF Menu\\x64"
   ],
-  "SelectedNode": "\\SF Menu.sln",
+  "SelectedNode": "\\SF Menu",
   "PreviewInSolutionExplorer": false
 }

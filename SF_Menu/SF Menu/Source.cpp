@@ -4,7 +4,8 @@
 #include<vector>
 #include<functional>
 #include "Menu.h"
-#include "EnglishWord.h"
+#include "First.h"
+#include "Second.h"
 
 using namespace sf;
 
