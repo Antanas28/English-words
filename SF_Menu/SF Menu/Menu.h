@@ -69,7 +69,7 @@ void menu(RenderWindow & window)
 
 			if (event.type == Event::MouseButtonReleased) {
 				if (event.mouseButton.button == Mouse::Left)
-					if (MenuNum == 1) { First(window); window.display(); while (!Keyboard::isKeyPressed(Keyboard::Escape)); }
+					if (MenuNum == 1) { First(window); }
 					if (MenuNum == 2) { Second(window); }
 					if (MenuNum == 3) { window.close(); isMenu = false; }
 			}
