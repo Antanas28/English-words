@@ -16,7 +16,7 @@ void First(RenderWindow& window)
 	Sprite ex(exTexture);
 	bool isMenu = 1;
 	int MenuNum = 0;
-	ex.setPosition(100, 100);
+	ex.setPosition(280, 435);
 
 	Image BackGr;
 	BackGr.loadFromFile("images/backgr.png");
@@ -38,7 +38,7 @@ void First(RenderWindow& window)
 		Event event;
 		MenuNum = 0;
 
-		if (IntRect(100, 100, 75, 50).contains(Mouse::getPosition(window))) { MenuNum = 1; }
+		if (IntRect(280, 435, 173, 32).contains(Mouse::getPosition(window))) { MenuNum = 1; }
 
 		while (window.pollEvent(event))
 		{
@@ -56,7 +56,7 @@ void First(RenderWindow& window)
 		}
 		text.setString("");
 		window.setTitle("English Word");
-		window.clear(sf::Color(71, 201, 221));
+		window.clear(sf::Color(21, 132, 149));
 		window.draw(text);
 		window.draw(BackGrSprite);
 		window.draw(ex);
